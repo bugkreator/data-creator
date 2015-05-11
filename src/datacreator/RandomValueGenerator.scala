@@ -15,12 +15,14 @@ trait RandomUniformGenerator extends UniformGenerator
 	override def getNextUniformValue() : Double = rand.nextDouble()
 }
 
+// this is an implementation for testing the correctness of RandomValueGenerator
 trait SerialUniformGenerator extends UniformGenerator
 {
 	private val increment : Double = 0.01
-	private var currvalue : Double = 0.0
+	private var currvalue : Double = -increment
 	override def getNextUniformValue() : Double = {
 		currvalue += increment
+		if (currvalue>=1) currvalue=0.0
 		currvalue
 	}
 }
